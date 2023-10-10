@@ -50,16 +50,16 @@ install_package() {
 # Check if SDDM is already installed
 if pacman -Qs sddm > /dev/null; then
     # Prompt user to manually install sddm-git to remove SDDM
-    read -n1 -rep "SDDM is already installed. Would you like to manually install sddm-git to remove it? This requires manual intervention. (y/n)" manual_install_sddm
+    read -n1 -rep "SDDM is already installed. Would you like to manually install sddm to remove it? This requires manual intervention. (y/n)" manual_install_sddm
     echo
     if [[ $manual_install_sddm =~ ^[Yy]$ ]]; then
-        $ISAUR -S sddm-git 2>&1 | tee -a "$LOG"
+        $ISAUR -S sddm 2>&1 | tee -a "$LOG"
     fi
 fi
 
 # Install SDDM and Catppuccin theme
-printf "${NOTE} Installing SDDM-git........\n"
-for package in sddm-git; do
+printf "${NOTE} Installing SDDM........\n"
+for package in sddm; do
     install_package "$package" 2>&1 | tee -a "$LOG"
     [ $? -ne 0 ] && { echo -e "\e[1A\e[K${ERROR} - $package install has failed, please check the install.log"; exit 1; }
 done

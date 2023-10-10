@@ -32,6 +32,9 @@ colorize_prompt() {
 # Set the name of the log file to include the current date and time
 LOG="install-$(date +%d-%H%M%S).log"
 
+# Set directory folder
+script_directory=install-scripts
+
 # Function to execute a script if it exists and make it executable
 execute_script() {
     local script="$1"
