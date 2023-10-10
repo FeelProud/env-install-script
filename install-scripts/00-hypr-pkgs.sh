@@ -8,7 +8,7 @@ Extra=(
 hypr_package=( 
 cliphist
 dunst 
-foot
+kitty
 grim 
 gvfs 
 gvfs-mtp 

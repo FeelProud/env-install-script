@@ -78,13 +78,11 @@ execute_script "sddm.sh"
 # Install xdph
 execute_script "xdph.sh"
 
+# Install dotfiles
+execute_script "dotfiles.sh" "$(pwd)"
+
 #if [ "$zsh" == "Y" ]; then
 #   execute_script "zsh.sh"
-#fi
-
-#if [ "$dots" == "Y" ]; then
-#    execute_script "dotfiles.sh" "$(pwd)"
-#
 #fi
 
 clear

@@ -1,2 +1,2 @@
 #!/bin/sh
-foot -e vim ~/.config/hypr/HelpFile.md
+kitty -e vim ~/.config/hypr/HelpFile.md
