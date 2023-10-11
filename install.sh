@@ -79,7 +79,7 @@ execute_script "sddm.sh"
 execute_script "xdph.sh"
 
 # Install dotfiles
-# execute_script "dotfiles.sh" "$(pwd)"
+execute_script "dotfiles.sh" "$(pwd)"
 
 #if [ "$zsh" == "Y" ]; then
 #   execute_script "zsh.sh"

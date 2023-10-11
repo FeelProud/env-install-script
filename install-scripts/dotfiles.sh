@@ -45,67 +45,49 @@ printf "${NOTE} Detecting keyboard layout to prepare necessary changes in hyprla
 printf "\n"
 
 # Prompt the user to confirm whether the detected layout is correct
-read -p "Detected keyboard layout or keymap: $layout. Is this correct? [y/n] " confirm
+printf "Detected keyboard layout or keymap: $layout \n"
 
-if [ "$confirm" = "y" ]; then
-  # If the detected layout is correct, update the 'kb_layout=' line in the file
-  awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout=" layout} 1' config/hypr/configs/Settings.conf > temp.conf
-  mv temp.conf config/hypr/configs/Settings.conf
-else
-  # If the detected layout is not correct, prompt the user to enter the correct layout
-  printf "${WARN} Ensure to type in the proper keyboard layout, e.g., gb, de, pl, etc.\n"
-  read -p "Please enter the correct keyboard layout: " new_layout
-  # Update the 'kb_layout=' line with the correct layout in the file
-  awk -v new_layout="$new_layout" '/kb_layout/ {$0 = "  kb_layout=" new_layout} 1' config/hypr/configs/Settings.conf > temp.conf
-  mv temp.conf config/hypr/configs/Settings.conf
-fi
+# If the detected layout is correct, update the 'kb_layout=' line in the file
+awk -v layout="$layout" '/kb_layout/ {$0 = "  kb_layout=" layout} 1' config/hypr/configs/Settings.conf > temp.conf
+mv temp.conf config/hypr/configs/Settings.conf
+
 printf "\n"
 
 ### Copy Config Files ###
 set -e # Exit immediately if a command exits with a non-zero status.
 
 printf "${NOTE} copying dotfiles\n"
-  for DIR in btop cava kitty hypr swappy; do 
-    DIRPATH=~/.config/$DIR
-    if [ -d "$DIRPATH" ]; then 
-      echo -e "${NOTE} - Config for $DIR found, attempting to back up."
-      mv $DIRPATH $DIRPATH-back-up 2>&1 | tee -a "$LOG"
-      echo -e "${NOTE} - Backed up $DIR to $DIRPATH-back-up."
-    fi
-  done
 
-  for DIRw in wallpapers; do 
-    DIRPATH=~/Pictures/$DIRw
-    if [ -d "$DIRPATH" ]; then 
-      echo -e "${NOTE} - wallpapers in $DIRw found, attempting to back up."
-      mv $DIRPATH $DIRPATH-back-up 2>&1 | tee -a "$LOG"
-      echo -e "${NOTE} - Backed up $DIRw to $DIRPATH-back-up."
-    fi
-  done
+for DIR in btop cava kitty hypr swappy; do 
+  DIRPATH=~/.config/$DIR
+  if [ -d "$DIRPATH" ]; then 
+    echo -e "${NOTE} - Config for $DIR found, attempting to back up."
+    mv $DIRPATH $DIRPATH-back-up 2>&1 | tee -a "$LOG"
+    echo -e "${NOTE} - Backed up $DIR to $DIRPATH-back-up."
+  fi
+done
 
-  # Copying config files
-  printf " Copying config files...\n"
-  mkdir -p ~/.config
-  cp -r config/hypr ~/.config/ && { echo "Copy completed!"; } || { echo "Error: Failed to copy hypr config files."; exit 1; } 2>&1 | tee -a "$LOG"
-  cp -r config/kitty ~/.config/ || { echo "Error: Failed to copy kitty config files."; exit 1; } 2>&1 | tee -a "$LOG"
-  cp -r config/btop ~/.config/ || { echo "Error: Failed to copy btop config files."; exit 1; } 2>&1 | tee -a "$LOG"
-  cp -r config/cava ~/.config/ || { echo "Error: Failed to copy cava config files."; exit 1; } 2>&1 | tee -a "$LOG"
-  cp -r config/swappy ~/.config/ || { echo "Error: Failed to copy swappy config files."; exit 1; } 2>&1 | tee -a "$LOG"
-  mkdir -p ~/Pictures/wallpapers
-  cp -r wallpapers ~/Pictures/ && { echo "Copy completed!"; } || { echo "Error: Failed to copy wallpapers."; exit 1; } 2>&1 | tee -a "$LOG"
+# Copying config files
+printf " Copying config files...\n"
+mkdir -p ~/.config
+cp -r config/hypr ~/.config/ && { echo "Copy completed!"; } || { echo "Error: Failed to copy hypr config files."; exit 1; } 2>&1 | tee -a "$LOG"
+cp -r config/kitty ~/.config/ || { echo "Error: Failed to copy kitty config files."; exit 1; } 2>&1 | tee -a "$LOG"
+cp -r config/btop ~/.config/ || { echo "Error: Failed to copy btop config files."; exit 1; } 2>&1 | tee -a "$LOG"
+cp -r config/cava ~/.config/ || { echo "Error: Failed to copy cava config files."; exit 1; } 2>&1 | tee -a "$LOG"
+cp -r config/swappy ~/.config/ || { echo "Error: Failed to copy swappy config files."; exit 1; } 2>&1 | tee -a "$LOG"
 
-  # symlinks for waybar
-  ln -sf "$HOME/.config/hypr/waybar/configs/config-default" "$HOME/.config/hypr/waybar/config" && \
-  ln -sf "$HOME/.config/hypr/waybar/style/dark-styles/style-dark-tokyo.css" "$HOME/.config/hypr/waybar/style.css" && \
+# symlinks for waybar
+ln -sf "$HOME/.config/hypr/waybar/configs/config-default" "$HOME/.config/hypr/waybar/config" && \
+ln -sf "$HOME/.config/hypr/waybar/style/dark-styles/style-dark-tokyo.css" "$HOME/.config/hypr/waybar/style.css" && \
 
-  # symlinks for dunst
-  ln -sf "$HOME/.config/hypr/dunst/styles/dunstrc-dark" "$HOME/.config/hypr/dunst/dunstrc" && \
+# symlinks for dunst
+ln -sf "$HOME/.config/hypr/dunst/styles/dunstrc-dark" "$HOME/.config/hypr/dunst/dunstrc" && \
 
-  # symlink for wofi
-  ln -sf "$HOME/.config/hypr/wofi/styles/style-dark.css" "$HOME/.config/hypr/wofi/style.css" && \
+# symlink for wofi
+ln -sf "$HOME/.config/hypr/wofi/styles/style-dark.css" "$HOME/.config/hypr/wofi/style.css" && \
   
-  # Set some files as executable
-  chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
+# Set some files as executable
+chmod +x ~/.config/hypr/scripts/* 2>&1 | tee -a "$LOG"
 
 # Clear screen
 clear
