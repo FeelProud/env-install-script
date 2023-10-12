@@ -76,10 +76,6 @@ cp -r config/btop ~/.config/ || { echo "Error: Failed to copy btop config files.
 cp -r config/cava ~/.config/ || { echo "Error: Failed to copy cava config files."; exit 1; } 2>&1 | tee -a "$LOG"
 cp -r config/swappy ~/.config/ || { echo "Error: Failed to copy swappy config files."; exit 1; } 2>&1 | tee -a "$LOG"
 
-# symlinks for waybar
-ln -sf "$HOME/.config/hypr/waybar/configs/config-default" "$HOME/.config/hypr/waybar/config" && \
-ln -sf "$HOME/.config/hypr/waybar/style/dark-styles/style-dark-tokyo.css" "$HOME/.config/hypr/waybar/style.css" && \
-
 # symlinks for dunst
 ln -sf "$HOME/.config/hypr/dunst/styles/dunstrc-dark" "$HOME/.config/hypr/dunst/dunstrc" && \
 
