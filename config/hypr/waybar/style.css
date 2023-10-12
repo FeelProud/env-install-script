@@ -100,6 +100,25 @@ tooltip {
   border-radius: 10px;
 }
 
+#network.ip {
+  color: #3C99DC;
+}
+
+#network.vpn {
+  color: orange;
+}
+
+#cpu {
+  color: #2E99B0;
+}
+
+#disk {
+  color: #1E1548;
+}
+
+#memory {
+  color: #FF2E4C;
+}
 
 
 #temperature.critical {
