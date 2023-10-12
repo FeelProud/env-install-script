@@ -8,33 +8,25 @@
 "spacing": 3,
 "fixed-center": true,
 "ipc": true,
-"margin-left": 6,
-"margin-right": 10,
-"margin-top": 10,
 
 "modules-left": [
-	"hyprland/workspaces", 
-	"cpu", 
-	"temperature", 
+	"hyprland/workspaces",
+	"cpu",
+ 	"disk",
 	"memory",
-	"disk", 
 	],
   
 "modules-center": [
-	"idle_inhibitor", 
 	"clock",
-	"custom/light_dark",
 	], 
 
 "modules-right": [
-	"custom/weather",	  
-	"battery", 
-	"backlight",
-	"bluetooth",
+	"tray",  
 	"network",
-	"custom/updater",
-	"custom/cycle_wall",
+	"bluetooth",
+	"battery", 
 	"custom/lock", 
+	"custom/power",
 	],
 },
 
@@ -48,27 +40,19 @@
 "spacing": 3,
 "fixed-center": true,
 "ipc": true,
-"margin-left": 6,
-"margin-right": 10,
-"margin-bottom": 6,
 
 "modules-left": [
-	"custom/menu",  
-	"wlr/taskbar",
+	"backlight",
+	"pulseaudio",
+	"pulseaudio#microphone",
 	 ],
 
 "modules-center": [
-	"cava",
 	],
 
 "modules-right": [
-	"hyprland/window",
-	"tray",
-	"keyboard-state",
-	"pulseaudio",
-	//"wireplumber", 
-	"pulseaudio#microphone",	  
-	"custom/power",
+	"network#ip",
+	"network#vpn",
 	],
 
 }]
