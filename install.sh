@@ -81,9 +81,8 @@ execute_script "xdph.sh"
 # Install dotfiles
 execute_script "dotfiles.sh" "$(pwd)"
 
-#if [ "$zsh" == "Y" ]; then
-#   execute_script "zsh.sh"
-#fi
+# Install zsh
+execute_script "zsh.sh"
 
 clear
 
