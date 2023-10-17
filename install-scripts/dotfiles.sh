@@ -19,10 +19,9 @@ RESET=$(tput sgr0)
 # Set the name of the log file to include the current date and time
 LOG="install-$(date +%d-%H%M%S)_dotfiles.log"
 
-# preparing hyprland.conf keyboard layout
-# Function to detect keyboard layout in an X server environment
-detect_x_layout() {
-  layout=$(setxkbmap -query | grep layout | awk '{print $2}')
+# Function to detect keyboard layout in a tty environment
+detect_tty_layout() {
+  layout=$(localectl status --no-pager | awk '/X11 Layout/ {print $3}')
   if [ -n "$layout" ]; then
     echo "$layout"
   else
@@ -30,17 +29,10 @@ detect_x_layout() {
   fi
 }
 
-# Detect the current keyboard layout based on the environment
-if [ -n "$DISPLAY" ]; then
-  # System is in an X server environment
-  layout=$(detect_x_layout)
-else
-  # System is in a tty environment
-  layout=$(detect_tty_layout)
-fi
+# System is in a tty environment
+layout=$(detect_tty_layout)
 
 echo "Keyboard layout: $layout"
-
 printf "${NOTE} Detecting keyboard layout to prepare necessary changes in hyprland.conf before copying\n"
 printf "\n"
 
@@ -57,7 +49,6 @@ printf "\n"
 set -e # Exit immediately if a command exits with a non-zero status.
 
 printf "${NOTE} copying dotfiles\n"
-
 for DIR in btop cava kitty hypr swappy; do 
   DIRPATH=~/.config/$DIR
   if [ -d "$DIRPATH" ]; then 
