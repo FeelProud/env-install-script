@@ -19,7 +19,6 @@ pavucontrol
 pipewire-alsa 
 playerctl
 polkit-kde-agent 
-python-requests 
 qt5ct 
 slurp 
 swappy 
@@ -37,7 +36,6 @@ xdg-user-dirs
 hypr_package_2=(
 brightnessctl 
 btop
-cava
 ffmpegthumbs
 gnome-system-monitor
 mousepad 
