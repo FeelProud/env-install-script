@@ -92,6 +92,9 @@ execute_script "xdph.sh"
 # Install zsh
 execute_script "zsh.sh"
 
+# Execute InputGroup
+execute_script "InputGroup.sh"
+
 # Install dotfiles
 # execute_script "dotfiles.sh"
 
