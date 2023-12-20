@@ -3,10 +3,12 @@
 thunar=(
 thunar 
 thunar-volman 
-tumbler 
+tumbler
+ffmpegthumbnailer 
 thunar-archive-plugin
 )
 
+############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
 
 # Determine the directory where the script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -63,7 +65,7 @@ printf "${NOTE} Installing Thunar Packages...\n"
   done
 
   # Check for existing config folders and backup
-  for DIR1 in xfce4; do
+  for DIR1 in Thunar xfce4; do
     DIRPATH=~/.config/$DIR1
     if [ -d "$DIRPATH" ]; then
       echo -e "${NOTE} Config for $DIR1 found, backing up."
@@ -71,6 +73,9 @@ printf "${NOTE} Installing Thunar Packages...\n"
       echo -e "${NOTE} Backed up $DIR1 to $DIRPATH-back-up."
     fi
   done
-  cp -r config/xfce4 ~/.config/ && { echo "Copy xfce4 completed!"; } || { echo "Error: Failed to copy xfce4 config files."; exit 1; } 2>&1 | tee -a "$LOG"
 
-  clear
+# copying from assets
+cp -r assets/xfce4 ~/.config/ && echo "Copy xfce4 completed!" || echo "Error: Failed to copy xfce4 config files." 2>&1 | tee -a "$LOG"
+cp -r assets/Thunar ~/.config/ && echo "Copy Thunar completed!" || echo "Error: Failed to copy Thunar config files." 2>&1 | tee -a "$LOG"
+
+clear

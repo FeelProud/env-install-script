@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# https://github.com/JaKooLit
+
+# edit your packages desired here. 
+# WARNING! If you remove packages here, dotfiles may not work properly.
+# and also, ensure that packages are present in AUR and official Arch Repo
+
 # add packages wanted here
 Extra=(
 
@@ -7,54 +13,65 @@ Extra=(
 
 hypr_package=( 
 cliphist
+curl
 dunst 
-kitty
 grim 
 gvfs 
-gvfs-mtp 
-jq  
+gvfs-mtp
+imagemagick 
+jq
+kitty
+kvantum
+nano  
 network-manager-applet 
 pamixer 
 pavucontrol
 pipewire-alsa 
 playerctl
-polkit-kde-agent 
-qt5ct 
+polkit-gnome
+python-requests
+python-pywal 
+qt5ct
+qt6ct
+qt6-svg
+rofi-lbonn-wayland-git 
 slurp 
 swappy 
 swayidle 
-swaylock-effects 
+swaylock-effects-git 
 swww 
 waybar
 wget
 wl-clipboard
-wofi 
+wlogout
 xdg-user-dirs 
+yad
 )
 
 # the following packages can be deleted. however, dotfiles may not work properly
 hypr_package_2=(
 brightnessctl 
 btop
-ffmpegthumbs
+cava
+eog
 gnome-system-monitor
 mousepad 
-mpv 
+mpv
+mpv-mpris 
 nvtop
 nwg-look-bin
-swaybg
-viewnior
+pacman-contrib
 vim
 wlsunset
+yt-dlp
 )
 
 fonts=(
 adobe-source-code-pro-fonts 
 noto-fonts-emoji
 otf-font-awesome 
-otf-font-awesome-4 
 ttf-droid 
-ttf-fantasque-sans-mono 
+ttf-fira-code
 ttf-jetbrains-mono 
 ttf-jetbrains-mono-nerd 
 )

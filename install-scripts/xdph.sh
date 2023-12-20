@@ -1,5 +1,8 @@
 #!/bin/bash
 
+############## WARNING DO NOT EDIT BEYOND THIS LINE if you dont know what you are doing! ######################################
+
+
 # Set some colors for output messages
 OK="$(tput setaf 2)[OK]$(tput sgr0)"
 ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
@@ -42,44 +45,40 @@ install_package() {
 
 for xdph in xdg-desktop-portal-hyprland; do
   install_package "$xdph" 2>&1 | tee -a "$LOG"
-
-  if [ $? -ne 0 ]; then
+    if [ $? -ne 0 ]; then
     echo -e "\e[1A\e[K${ERROR} - $xdph install had failed, please check the install.log"
     exit 1
-  fi
+    fi
 done
     
-printf "${NOTE} Checking for other other XDG-Desktop-Portal-Implementations....\n"
+printf "${NOTE} Checking for other XDG-Desktop-Portal-Implementations....\n"
 sleep 1
 printf "\n"
-printf "${NOTE} XDG-desktop-portal-KDE (if installed) should be manually disabled or removed! I cant remove it... sorry...\n"
-read -n1 -rep "${CAT} Would you like me to try to remove other XDG-Desktop-Portal-Implementations? (y/n)" XDPH1
+printf "${NOTE} XDG-desktop-portal-KDE (if installed) should be manually disabled or removed! I can't remove it... sorry...\n"
+read -rp "${CAT} Would you like to try to remove other XDG-Desktop-Portal-Implementations? (y/n) " XDPH1
+echo
 sleep 1
 
 if [[ $XDPH1 =~ ^[Yy]$ ]]; then
-  # Clean out other portals
-  printf "${NOTE} Clearing any other xdg-desktop-portal implementations...\n"
-
-  # Check if packages are installed and uninstall if present
-  if pacman -Qs xdg-desktop-portal-gnome > /dev/null ; then
-    echo "Removing xdg-desktop-portal-gnome..."
-    sudo pacman -R --noconfirm xdg-desktop-portal-gnome 2>&1 | tee -a $LOG
-  fi
-
-  if pacman -Qs xdg-desktop-portal-gtk > /dev/null ; then
-    echo "Removing xdg-desktop-portal-gtk..."
-    sudo pacman -R --noconfirm xdg-desktop-portal-gtk 2>&1 | tee -a $LOG
-  fi
- 
-  if pacman -Qs xdg-desktop-portal-wlr > /dev/null ; then
-    echo "Removing xdg-desktop-portal-wlr..."
-    sudo pacman -R --noconfirm xdg-desktop-portal-wlr 2>&1 | tee -a $LOG
-  fi
-
-  if pacman -Qs xdg-desktop-portal-lxqt > /dev/null ; then
-    echo "Removing xdg-desktop-portal-lxqt..."
-    sudo pacman -R --noconfirm xdg-desktop-portal-lxqt 2>&1 | tee -a $LOG
-  fi    
+    # Clean out other portals
+    printf "${NOTE} Clearing any other xdg-desktop-portal implementations...\n"
+    # Check if packages are installed and uninstall if present
+    if pacman -Qs xdg-desktop-portal-gnome > /dev/null ; then
+        echo "Removing xdg-desktop-portal-gnome..."
+        sudo pacman -R --noconfirm xdg-desktop-portal-gnome 2>&1 | tee -a $LOG
+    fi
+    if pacman -Qs xdg-desktop-portal-gtk > /dev/null ; then
+        echo "Removing xdg-desktop-portal-gtk..."
+        sudo pacman -R --noconfirm xdg-desktop-portal-gtk 2>&1 | tee -a $LOG
+    fi
+    if pacman -Qs xdg-desktop-portal-wlr > /dev/null ; then
+        echo "Removing xdg-desktop-portal-wlr..."
+        sudo pacman -R --noconfirm xdg-desktop-portal-wlr 2>&1 | tee -a $LOG
+    fi
+    if pacman -Qs xdg-desktop-portal-lxqt > /dev/null ; then
+        echo "Removing xdg-desktop-portal-lxqt..."
+        sudo pacman -R --noconfirm xdg-desktop-portal-lxqt 2>&1 | tee -a $LOG
+    fi
 fi
 
 clear

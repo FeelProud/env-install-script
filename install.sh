@@ -1,14 +1,22 @@
 #!/bin/bash
 
+# Check if running as root. If root, script will exit
+if [[ $EUID -eq 0 ]]; then
+    echo "This script should not be executed as root! Exiting......."
+    exit 1
+fi
+
 clear
 
 # Welcome message
 echo "$(tput setaf 6)Welcome to FeelProud's Install Script!$(tput sgr0)"
 echo
+echo "$(tput setaf 166)ATTENTION: Run a full system update and Reboot first!! (Highly Recommended) $(tput sgr0)"
+echo
+read -p "$(tput setaf 6)Would you like to proceed? (y/n): $(tput sgr0)" proceed
 
-# Check if running as root. If root, script will exit
-if [[ $EUID -eq 0 ]]; then
-    echo "This script should not be executed as root! Exiting......."
+if [ "$proceed" != "y" ]; then
+    echo "Installation aborted."
     exit 1
 fi
 
@@ -60,6 +68,9 @@ execute_script "paru.sh"
 # Install hyprland packages
 execute_script "00-hypr-pkgs.sh"
 
+# Install pipewire and pipewire-audio
+execute_script "pipewire.sh"
+
 # Install nvidia drivers
 execute_script "nvidia.sh"
 
@@ -78,11 +89,11 @@ execute_script "sddm.sh"
 # Install xdph
 execute_script "xdph.sh"
 
-# Install dotfiles
-execute_script "dotfiles.sh" "$(pwd)"
-
 # Install zsh
 execute_script "zsh.sh"
+
+# Install dotfiles
+# execute_script "dotfiles.sh"
 
 clear
 
