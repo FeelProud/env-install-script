@@ -62,6 +62,9 @@ execute_script() {
 # Ensuring all in the scripts folder are made executable
 chmod +x install-scripts/*
 
+# Execute AUR helper script based on user choice
+execute_script "00-base.sh"
+
 # Install paru
 execute_script "paru.sh"
 
