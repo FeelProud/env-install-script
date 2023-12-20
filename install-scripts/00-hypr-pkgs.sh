@@ -8,7 +8,33 @@
 
 # add packages wanted here
 Extra=(
-
+burpsuite
+discord-canary
+docker
+exploitdb
+ffuf
+firefox
+gobuster
+hashcat
+hydra
+jd-gui
+john
+jq
+jre-openjdk
+less
+networkmanager-openvpn
+nmap
+openvpn
+python-is-python3
+python2
+python3
+qbittorrent
+remmina
+seclists
+spotify
+unzip
+visual-studio-code-bin
+vlc
 )
 
 hypr_package=( 
